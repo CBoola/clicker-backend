@@ -2,7 +2,14 @@
 
 {% block content %}
 
-<h1>CBoola Clicker</h1>
-<p>Bo cebula jest pyszna i zdrowa.</p>
+    <h1>CBoola Clicker</h1>
+    <p>Bo cebula jest pyszna i zdrowa.</p>
+
+    <p>Hello {{ user.username }}!</p>
+
+
+    <h2>Login</h2>
+
+    <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
 
 {% endblock content %}
