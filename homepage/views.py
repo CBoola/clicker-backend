@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 
 
 def main_page(request):
+    if not request.user.is_anonymous:
+        return redirect("/game")
+
     return render(request, 'main_page.html')
 
 
