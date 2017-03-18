@@ -37,9 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'social_django',
 
+    'social_django',
     'rest_framework',
+
     'homepage',
     'api'
 ]
@@ -68,8 +69,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'social_django.context_processors.backends',  # <--
-                'social_django.context_processors.login_redirect', # <--
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -128,19 +129,17 @@ MEDIA_URL = '/media/'
 FILE_UPLOAD_PERMISSIONS = 644
 
 
-# Facebook
+# Facebook auth
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
-
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = '/'
 
-
-SOCIAL_AUTH_FACEBOOK_KEY = '1184584518334879'  # App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = '4b2488908696bc48d0a3c2a3617eaac7'  # App Secret
+SOCIAL_AUTH_FACEBOOK_KEY = '1184584518334879'
+SOCIAL_AUTH_FACEBOOK_SECRET = '4b2488908696bc48d0a3c2a3617eaac7'
 

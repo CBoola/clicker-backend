@@ -2,14 +2,20 @@
 
 {% block content %}
 
-    <h1>CBoola Clicker</h1>
-    <p>Bo cebula jest pyszna i zdrowa.</p>
 
-    <p>Hello {{ user.username }}!</p>
+    {% if not user.is_anonymous %}
 
+        <h1>Cześć {{ user.first_name }} {{ user.last_name }}!</h1>
+        <p>Każde kliknięcie w cebulkę to jeden szczęsliwy cebulokot.</p>
+        <a href="/logout">Wyloguj się</a>
 
-    <h2>Login</h2>
+    {% else %}
 
-    <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
+        <h1>CBoola Clicker</h1>
+        <p>Zaloguj się, aby wspomóc świat w produkcji leczniczej cebuli.</p>
+        <a href="{% url 'social:begin' 'facebook' %}">Zaloguj się przez Facebook'a</a>
+    
+    {% endif %}
+    
 
 {% endblock content %}
