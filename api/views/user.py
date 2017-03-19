@@ -20,6 +20,11 @@ class UserViewSet(viewsets.ModelViewSet):
 
     @list_route(['GET'], permission_classes=[AllowAny])
     def is_logged(self, request):
+        """
+        Response body: \n
+        `is_logged` (boolean)
+        """
+
         result = {
             "is_logged": not request.user.is_anonymous
         }
@@ -28,6 +33,14 @@ class UserViewSet(viewsets.ModelViewSet):
 
     @list_route(['GET'], permission_classes=[IsAuthenticated])
     def details(self, request):
+        """
+        Response body: \n
+        `first_name` (string) \n
+        `last_name` (string)
+
+        If user is not logged in, this view returns HTTP 403.
+        """
+
         user = request.user
 
         result = {
