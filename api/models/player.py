@@ -14,5 +14,5 @@ class Player(models.Model):
     current_state = JSONField(default={})
     structures = JSONField(default={})
 
-    def __unicode__(self):
-        return self.user.name
+    def __str__(self):
+        return "{0} {1}".format(self.user.first_name, self.user.last_name)
