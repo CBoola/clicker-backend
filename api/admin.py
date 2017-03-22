@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Structure
+
+
+@admin.register(Structure)
+class StructureAdmin(admin.ModelAdmin):
+    list_display = ["name", "base_prize", "production_rate"]
