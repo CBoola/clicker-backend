@@ -8,23 +8,43 @@ from rest_framework.decorators import list_route
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
 
-from api.models.player import Player
+from api.models import Player, Structure, Upgrade
+from api.validators import validate_schema, validate_existence
+from api.schemas import *
 
 
 class PlayerPermission(permissions.BasePermission):
     def has_object_permission(self, request, view, player):
-        return player.user == request.user
+        return player.user == request.user or request.user.is_staff
 
 
 class PlayerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Player
-        fields = ["name", "current_state", "structures"]
+        fields = ["name", "current_state", "structures", "upgrades", "statistics"]
         read_only_fields = ["name"]
 
     name = serializers.SerializerMethodField()
-    current_state = serializers.JSONField()
-    structures = serializers.JSONField()
+    current_state = serializers.JSONField(
+        validators=[
+            validate_schema(CURRENT_STATE_SCHEMA)
+        ])
+
+    structures = serializers.JSONField(
+        validators=[
+            validate_schema(STRUCTURES_SCHEMA),
+            validate_existence(Structure.objects.all())
+        ])
+    upgrades = serializers.JSONField(
+        validators=[
+            validate_schema(UPGRADES_SCHEMA),
+            validate_existence(Upgrade.objects.all())
+        ])
+
+    statistics = serializers.JSONField(
+        validators=[
+            validate_schema(STATISTICS_SCHEMA)
+        ])
 
     def get_name(self, player):
         return player.__str__()
@@ -42,7 +62,6 @@ class PlayerViewSet(viewsets.ModelViewSet):
         result = PlayerSerializer(self.queryset, many=True)
         return Response(result.data)
 
-
     @list_route(['GET'], permission_classes=[AllowAny])
     def is_logged(self, request):
         """
@@ -57,7 +76,7 @@ class PlayerViewSet(viewsets.ModelViewSet):
         """
 
         # administrator is not the user!
-        is_logged = request.user.is_authenticated() and not request.user.is_staff
+        is_logged = Player.is_user_logged(request.user)
 
         result = {
             "is_logged": is_logged,

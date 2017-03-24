@@ -8,6 +8,14 @@
     {% if user.is_anonymous %}
         
         <a class="btn btn-primary" href="{% url 'social:begin' 'facebook' %}" role="button">Zaloguj się przez Facebook'a</a>
+
+    {% elif user.is_staff %}
+
+        <p>
+            Jesteś zalogowany jako administrator. <br />
+            <a class="btn btn-default" href="/logout">Wyloguj się</a>
+        </p>
+
     {% endif %}
 
     <hr>

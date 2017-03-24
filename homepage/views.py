@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
+from api.models import Player
 
 
 def main_page(request):
-    if not request.user.is_anonymous:
+    if Player.is_user_logged(request.user):
         return redirect("/game")
 
     return render(request, 'main_page.html')

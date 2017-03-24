@@ -4,6 +4,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Upgrade(models.Model):
 
+    system_id = models.CharField(max_length=25, unique=True)
     name = models.CharField(max_length=25)
     description = models.CharField(max_length=100)
     icon = models.ImageField(upload_to="upgrades")
