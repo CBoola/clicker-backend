@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '@+mg34s#01fc%v5#&*&@%2mr!pwhvi18f3)d3m)i0eppj4f15c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["51.255.167.114"]
 
@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
     'homepage',
-    'api'
+    'api.apps.ApiConfig'
 ]
 
 MIDDLEWARE = [

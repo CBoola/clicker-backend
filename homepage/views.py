@@ -6,7 +6,7 @@ def main_page(request):
     if Player.is_user_logged(request.user):
         return redirect("/game")
 
-    return render(request, 'main_page.html')
+    return redirect("/")
 
 
 def logout(request):

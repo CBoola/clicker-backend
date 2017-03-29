@@ -14,7 +14,7 @@ router.register(r'upgrade', views.UpgradeViewSet)
 
 
 urlpatterns = [
-    url(r'^api/', include(router.urls)),
+    url(r'^', include(router.urls)),
     url(r'^', include('homepage.urls')),
 
     url(r'^admin/', admin.site.urls),
