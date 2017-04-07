@@ -16,4 +16,4 @@ class UpgradeSerializer(serializers.ModelSerializer):
 class UpgradeViewSet(viewsets.ModelViewSet):
     queryset = Upgrade.objects.all()
     serializer_class = UpgradeSerializer
-    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
+    #permission_classes = [DjangoModelPermissionsOrAnonReadOnly]

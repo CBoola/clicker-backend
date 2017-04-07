@@ -1,5 +1,5 @@
 CURRENT_STATE_SCHEMA = {
-    "type": "objects",
+    "type": "object",
     "properties": {
         "cash": {"type": "number"}
     }
@@ -30,7 +30,7 @@ UPGRADES_SCHEMA = {
 
 
 STATISTICS_SCHEMA = {
-    "type": "objects",
+    "type": "object",
     "properties": {
         "number_of_clicks": {"type": "number"}
     }

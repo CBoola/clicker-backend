@@ -53,7 +53,7 @@ class PlayerSerializer(serializers.ModelSerializer):
 class PlayerViewSet(viewsets.ModelViewSet):
     queryset = Player.objects.all()
     serializer_class = PlayerSerializer
-    permission_classes = [PlayerPermission]
+    #permission_classes = [PlayerPermission]
 
     def list(self, request):
         if not IsAdminUser().has_permission(request, self):
@@ -62,7 +62,8 @@ class PlayerViewSet(viewsets.ModelViewSet):
         result = PlayerSerializer(self.queryset, many=True)
         return Response(result.data)
 
-    @list_route(['GET'], permission_classes=[AllowAny])
+    #@list_route(['GET'], permission_classes=[AllowAny])
+    @list_route(['GET'])
     def is_logged(self, request):
         """
         This endpoint is used to check if the user is logged in and can be treated

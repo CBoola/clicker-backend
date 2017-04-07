@@ -29,7 +29,7 @@ class Player(models.Model):
         verbose_name="Stan rozgrywki")
 
     structures = JSONField(
-        default={},
+        default=[],
         blank=True,
         validators=[
             validate_schema(STRUCTURES_SCHEMA),
@@ -38,7 +38,7 @@ class Player(models.Model):
         verbose_name="Posiadane struktury")
 
     upgrades = JSONField(
-        default={},
+        default=[],
         blank=True,
         validators=[
             validate_schema(UPGRADES_SCHEMA),
