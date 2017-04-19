@@ -21,7 +21,7 @@ class PlayerPermission(permissions.BasePermission):
 class PlayerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Player
-        fields = ["name", "current_state", "structures", "upgrades", "statistics"]
+        fields = ["pk", "name", "current_state", "structures", "upgrades", "statistics"]
         read_only_fields = ["name"]
 
     name = serializers.SerializerMethodField()
@@ -56,6 +56,13 @@ class PlayerViewSet(viewsets.ModelViewSet):
     #permission_classes = [PlayerPermission]
 
     def list(self, request):
+        if not IsAdminUser().has_permission(request, self):
+            raise PermissionDenied()
+
+        result = PlayerSerializer(self.queryset, many=True)
+        return Response(result.data)
+
+    def rec(self, request):
         if not IsAdminUser().has_permission(request, self):
             raise PermissionDenied()
 

@@ -4,6 +4,11 @@ from jsonschema import Draft4Validator, validators
 
 
 def extend_with_default(validator_class):
+    """
+    This method is creating additional validator that can populate
+    field in JSON with its default value if it is not specified.
+    """
+
     validate_properties = validator_class.VALIDATORS["properties"]
 
     def set_defaults(validator, properties, instance, schema):
@@ -50,6 +55,6 @@ def validate_existence(queryset):
 
         for item in array:
             if item["system_id"] not in available:
-                raise ValidationError(str(item["system_id"]) + ": does not exist")
+                raise ValidationError(item["system_id"] + ": does not exist")
 
     return func

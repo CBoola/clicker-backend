@@ -5,8 +5,14 @@ from .models import Player, Structure, Upgrade
 
 @admin.register(Player)
 class PlayerAdmin(admin.ModelAdmin):
-    pass
+    actions = ['fix_data']
 
+    def fix_data(self, request, queryset):
+        for item in queryset:
+            item.clean()
+            item.save()
+
+    fix_data.short_description = "Popraw SCHEMA'ę stanu"
 
 @admin.register(Structure)
 class StructureAdmin(admin.ModelAdmin):

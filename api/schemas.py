@@ -3,7 +3,8 @@ CURRENT_STATE_SCHEMA = {
     "properties": {
         "cash": {
             "type": "integer",
-            "default": 0
+            "default": 0,
+            "minimum": 0
         }
     }
 }
@@ -15,7 +16,7 @@ STRUCTURES_SCHEMA = {
         "type": "object",
         "properties": {
             "system_id": {"type": "string"},
-            "amount": {"type": "integer"}
+            "amount": {"type": "integer", "minimum": 0}
         }
     },
     "default": []
@@ -39,7 +40,8 @@ STATISTICS_SCHEMA = {
     "properties": {
         "number_of_clicks": {
             "type": "integer",
-            "default": 0
+            "default": 0,
+            "minimum": 0
         }
     }
 }
