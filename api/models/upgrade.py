@@ -28,7 +28,7 @@ class Upgrade(models.Model):
         validators=[MinValueValidator(1)],
         verbose_name="Cena bazowa")
 
-    multiplier = models.IntegerField(
+    multiplier = models.FloatField(
         default=1,
         validators=[MinValueValidator(1)],
         verbose_name="Mnożnik produkcji")
