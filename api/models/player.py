@@ -26,40 +26,28 @@ class Player(models.Model):
     current_state = JSONField(
         default={},
         blank=True,
-        #validators=[CURRENT_STATE_VALIDATOR],
         verbose_name="Stan rozgrywki")
 
     structures = JSONField(
         default=[],
         blank=True,
-        validators=[
-            #validate_schema(STRUCTURES_SCHEMA),
-            #validate_existence(Structure.objects.all())
-        ],
         verbose_name="Posiadane struktury")
 
     upgrades = JSONField(
         default=[],
         blank=True,
-        validators=[
-            #validate_schema(UPGRADES_SCHEMA),
-            #validate_existence(Upgrade.objects.all())
-        ],
         verbose_name="Posiadane ulepszenia")
 
     statistics = JSONField(
         default={},
         blank=True,
-        #validators=[STATISTICS_VALIDATOR],
         verbose_name="Statystyki")
 
     class Meta:
         verbose_name = "Gracz"
         verbose_name_plural = "Gracze"
 
-    def clean(self):
-        super(Player, self).clean_fields()
-
+    def save(self, *args, **kwargs):
         validate_schema(CURRENT_STATE_SCHEMA)(self.current_state)
 
         validate_schema(STRUCTURES_SCHEMA)(self.structures)
@@ -69,6 +57,8 @@ class Player(models.Model):
         validate_existence(Upgrade.objects.all())(self.upgrades)
 
         validate_schema(STATISTICS_SCHEMA)(self.statistics)
+
+        super(...).save(*args, **kwargs)
 
     def __str__(self):
         return "{0} {1}".format(self.user.first_name, self.user.last_name)

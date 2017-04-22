@@ -17,3 +17,4 @@ class StructureViewSet(viewsets.ModelViewSet):
     queryset = Structure.objects.all()
     serializer_class = StructureSerializer
     #permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
+    

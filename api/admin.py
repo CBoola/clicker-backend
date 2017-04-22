@@ -17,8 +17,22 @@ class PlayerAdmin(admin.ModelAdmin):
 @admin.register(Structure)
 class StructureAdmin(admin.ModelAdmin):
     list_display = ["name", "base_prize", "production_rate"]
+    readonly_fields = ["icon_preview"]
+
+    def icon_preview(self, obj):
+        return "<img src='{0}' height='200px' />".format(obj.icon.url)
+
+    icon_preview.short_description = 'Podgląd ikony'
+    icon_preview.allow_tags = True
 
 
 @admin.register(Upgrade)
 class UpgradeAdmin(admin.ModelAdmin):
     list_display = ["name", "base_prize", "multiplier"]
+    readonly_fields = ["icon_preview"]
+
+    def icon_preview(self, obj):
+        return "<img src='{0}' height='200px' />".format(obj.icon.url)
+
+    icon_preview.short_description = 'Podgląd ikony'
+    icon_preview.allow_tags = True

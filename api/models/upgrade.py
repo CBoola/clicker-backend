@@ -19,7 +19,7 @@ class Upgrade(models.Model):
         max_length=100,
         verbose_name="Opis")
 
-    icon = models.ImageField(
+    icon = models.FileField(
         upload_to="upgrades",
         verbose_name="Ikona")
 

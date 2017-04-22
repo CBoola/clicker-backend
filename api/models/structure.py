@@ -19,7 +19,7 @@ class Structure(models.Model):
         max_length=100,
         verbose_name="Opis")
 
-    icon = models.ImageField(
+    icon = models.FileField(
         upload_to="structures",
         verbose_name="Ikona")
 

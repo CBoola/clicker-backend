@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '@+mg34s#01fc%v5#&*&@%2mr!pwhvi18f3)d3m)i0eppj4f15c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["51.255.167.114"]
 
@@ -126,7 +126,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-FILE_UPLOAD_PERMISSIONS = 644
+FILE_UPLOAD_PERMISSIONS = 777
 
 
 # Facebook auth
