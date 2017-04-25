@@ -58,7 +58,7 @@ class Player(models.Model):
 
         validate_schema(STATISTICS_SCHEMA)(self.statistics)
 
-        super(...).save(*args, **kwargs)
+        super(Player, self).save(*args, **kwargs)
 
     def __str__(self):
         return "{0} {1}".format(self.user.first_name, self.user.last_name)
