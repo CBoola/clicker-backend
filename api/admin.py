@@ -5,6 +5,8 @@ from .models import Player, Structure, Upgrade
 
 @admin.register(Player)
 class PlayerAdmin(admin.ModelAdmin):
+    list_display = ["name", "pk", "created_time"]
+    readonly_fields = ["created_time"]
     actions = ['fix_data']
 
     def fix_data(self, request, queryset):

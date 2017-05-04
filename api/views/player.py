@@ -21,8 +21,15 @@ class PlayerPermission(permissions.BasePermission):
 class PlayerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Player
-        fields = ["pk", "name", "current_state", "structures", "upgrades", "statistics"]
-        read_only_fields = ["name"]
+        fields = [
+            "pk",
+            "name",
+            "created_time",
+            "current_state",
+            "structures",
+            "upgrades",
+            "statistics"]
+        read_only_fields = ["name", "created_time"]
 
     name = serializers.SerializerMethodField()
     current_state = serializers.JSONField(

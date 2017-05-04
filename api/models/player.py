@@ -43,6 +43,10 @@ class Player(models.Model):
         blank=True,
         verbose_name="Statystyki")
 
+    created_time = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="Data utworzenia konta")
+
     class Meta:
         verbose_name = "Gracz"
         verbose_name_plural = "Gracze"
@@ -62,6 +66,9 @@ class Player(models.Model):
 
     def __str__(self):
         return "{0} {1}".format(self.user.first_name, self.user.last_name)
+
+    def name(self):
+        return self.__str__()
 
     @staticmethod
     def is_user_logged(user):
