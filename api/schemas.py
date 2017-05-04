@@ -42,6 +42,24 @@ STATISTICS_SCHEMA = {
             "type": "integer",
             "default": 0,
             "minimum": 0
+        },
+
+        "collected_cash": {
+            "type": "integer",
+            "default": 0,
+            "minimum": 0
+        },
+
+        "spent_cash": {
+            "type": "integer",
+            "default": 0,
+            "minimum": 0
+        },
+
+        "cach_from_clicks": {
+            "type": "integer",
+            "default": 0,
+            "minimum": 0
         }
     }
 }
