@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Player, Structure, Upgrade
+from .models import Player, Structure, Upgrade, Achievement
 
 
 @admin.register(Player)
@@ -38,4 +38,10 @@ class StructureAdmin(admin.ModelAdmin, IconPreviewMixin):
 @admin.register(Upgrade)
 class UpgradeAdmin(admin.ModelAdmin, IconPreviewMixin):
     list_display = ["name", "base_prize", "multiplier"]
+    readonly_fields = ["icon_preview"]
+
+
+@admin.register(Achievement)
+class AchievementAdmin(admin.ModelAdmin, IconPreviewMixin):
+    list_display = ["name", "type"]
     readonly_fields = ["icon_preview"]

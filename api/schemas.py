@@ -35,6 +35,18 @@ UPGRADES_SCHEMA = {
 }
 
 
+ACHIEVEMENT_SCHEMA = {
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "system_id": {"type": "string"}
+        }
+    },
+    "default": []
+}
+
+
 STATISTICS_SCHEMA = {
     "type": "object",
     "properties": {

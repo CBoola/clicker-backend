@@ -11,6 +11,8 @@ from api.schemas import *
 
 from api.models.structure import Structure
 from api.models.upgrade import Upgrade
+from api.models.achievement import Achievement
+
 
 CURRENT_STATE_VALIDATOR = validate_schema(CURRENT_STATE_SCHEMA)
 STATISTICS_VALIDATOR = validate_schema(STATISTICS_SCHEMA)
@@ -43,6 +45,11 @@ class Player(models.Model):
         blank=True,
         verbose_name="Statystyki")
 
+    achievements = JSONField(
+        default=[],
+        blank=True,
+        verbose_name="Osiągnięcia")
+
     created_time = models.DateTimeField(
         auto_now_add=True,
         verbose_name="Data utworzenia konta")
@@ -59,6 +66,9 @@ class Player(models.Model):
 
         validate_schema(UPGRADES_SCHEMA)(self.upgrades)
         validate_existence(Upgrade.objects.all())(self.upgrades)
+
+        validate_schema(ACHIEVEMENT_SCHEMA)(self.achievements)
+        validate_existence(Achievement.objects.all())(self.achievements)
 
         validate_schema(STATISTICS_SCHEMA)(self.statistics)
 
