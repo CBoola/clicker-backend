@@ -43,5 +43,5 @@ class UpgradeAdmin(admin.ModelAdmin, IconPreviewMixin):
 
 @admin.register(Achievement)
 class AchievementAdmin(admin.ModelAdmin, IconPreviewMixin):
-    list_display = ["name", "type"]
+    list_display = ["name", "type", "threshold"]
     readonly_fields = ["icon_preview"]

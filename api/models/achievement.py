@@ -7,10 +7,9 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class Achievement(models.Model):
 
     ACHIEVEMENT_TYPE = [
-        ('NUMBER_OF_CLICKS', 'Ilość kliknięć'),
-        ('COLLECTED_CASH', 'Zgromadzone pieniądze'),
-        ('MAXIMUM_CASH', 'Maksymalna posiadana ilość pieniędzy'),
-        ('SPENT_CASH', 'Łącznie wydane pieniądze'),
+        ('BOUGHT_STRUCTURES', 'Kupione struktury'),
+        ('SPENT_CASH', 'Wydane pieniądze'),
+        ('MAXIMUM_CASH', 'Posiadane pieniędze'),
         ('OTHER', 'Inny')
     ]
 
@@ -36,6 +35,11 @@ class Achievement(models.Model):
     icon = models.FileField(
         upload_to="structures",
         verbose_name="Ikona")
+
+    threshold = models.IntegerField(
+        default=1,
+        validators=[MinValueValidator(1)],
+        verbose_name="Próg zdobycia")
 
     class Meta:
         ordering = ['type']
