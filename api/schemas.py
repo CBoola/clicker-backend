@@ -69,7 +69,7 @@ STATISTICS_SCHEMA = {
             "minimum": 0
         },
 
-        "cach_from_clicks": {
+        "cash_from_clicks": {
             "type": "integer",
             "default": 0,
             "minimum": 0

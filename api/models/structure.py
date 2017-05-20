@@ -12,16 +12,23 @@ class Structure(models.Model):
         verbose_name="Identyfikator")
 
     name = models.CharField(
-        max_length=25,
+        max_length=100,
         verbose_name="Nazwa")
 
     description = models.CharField(
-        max_length=100,
+        max_length=200,
         verbose_name="Opis")
 
     icon = models.FileField(
         upload_to="structures",
         verbose_name="Ikona")
+
+    sound = models.FileField(
+        default=None,
+        null=True,
+        blank=True,
+        upload_to="sounds",
+        verbose_name="Dźwięk kupna")
 
     base_prize = models.IntegerField(
         default=1,

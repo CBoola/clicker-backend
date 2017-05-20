@@ -29,16 +29,29 @@ class IconPreviewMixin():
     icon_preview.allow_tags = True
 
 
+class SoundPreviewMixin():
+    readonly_fields = ["sound_preview"]
+
+    def sound_preview(self, obj):
+        if not obj.pk:
+            return "<p>Podgląd niedostępny</p>"
+
+        return "<audio controls><source src='{0}'></audio>".format(obj.sound.url)
+
+    sound_preview.short_description = 'Podgląd dźwięku'
+    sound_preview.allow_tags = True
+
+
 @admin.register(Structure)
-class StructureAdmin(admin.ModelAdmin, IconPreviewMixin):
+class StructureAdmin(admin.ModelAdmin, IconPreviewMixin, SoundPreviewMixin):
     list_display = ["name", "base_prize", "production_rate"]
-    readonly_fields = ["icon_preview"]
+    readonly_fields = ["icon_preview", "sound_preview"]
 
 
 @admin.register(Upgrade)
-class UpgradeAdmin(admin.ModelAdmin, IconPreviewMixin):
+class UpgradeAdmin(admin.ModelAdmin, IconPreviewMixin, SoundPreviewMixin):
     list_display = ["name", "base_prize", "multiplier"]
-    readonly_fields = ["icon_preview"]
+    readonly_fields = ["icon_preview", "sound_preview"]
 
 
 @admin.register(Achievement)

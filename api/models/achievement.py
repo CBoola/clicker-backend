@@ -19,17 +19,26 @@ class Achievement(models.Model):
         verbose_name="Identyfikator")
 
     type = models.CharField(
-        max_length=25,
+        max_length=100,
         choices=ACHIEVEMENT_TYPE,
         unique=True,
         verbose_name="Typ")
 
-    name = models.CharField(
+    related_system_id = models.CharField(
         max_length=25,
+        default="",
+        null=True,
+        blank=True,
+        verbose_name="Identyfikator modelu relacji",
+        help_text="""Identyfikator do jakiegokolwiek modelu zadeklarowanego w systemie 
+            (jego poprawność nie jest sprawdzana).""")
+
+    name = models.CharField(
+        max_length=100,
         verbose_name="Nazwa")
 
     description = models.CharField(
-        max_length=100,
+        max_length=200,
         verbose_name="Opis")
 
     icon = models.FileField(

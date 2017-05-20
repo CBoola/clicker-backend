@@ -11,6 +11,7 @@ router = routers.DefaultRouter()
 router.register(r'player', views.PlayerViewSet)
 router.register(r'structure', views.StructureViewSet)
 router.register(r'upgrade', views.UpgradeViewSet)
+router.register(r'achievement', views.AchievementViewSet)
 
 
 urlpatterns = [
