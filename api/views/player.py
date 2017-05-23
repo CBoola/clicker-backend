@@ -8,7 +8,7 @@ from rest_framework.decorators import list_route
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
 
-from api.models import Player, Structure, Upgrade
+from api.models import Player, Structure, Upgrade, Achievement
 from api.validators import validate_schema, validate_existence
 from api.schemas import *
 
@@ -28,6 +28,7 @@ class PlayerSerializer(serializers.ModelSerializer):
             "current_state",
             "structures",
             "upgrades",
+            "achievements",
             "statistics"]
         read_only_fields = ["name", "created_time"]
 
@@ -46,6 +47,12 @@ class PlayerSerializer(serializers.ModelSerializer):
         validators=[
             validate_schema(UPGRADES_SCHEMA),
             validate_existence(Upgrade.objects.all())
+        ])
+
+    achievements = serializers.JSONField(
+        validators=[
+            validate_schema(ACHIEVEMENT_SCHEMA),
+            validate_existence(Achievement.objects.all())
         ])
 
     statistics = serializers.JSONField(

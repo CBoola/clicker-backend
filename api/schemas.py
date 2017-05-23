@@ -41,7 +41,7 @@ ACHIEVEMENT_SCHEMA = {
         "type": "object",
         "properties": {
             "system_id": {"type": "string"},
-            "time": {"type": "date-time"}
+            "time": {"type": "string"}
         }
     },
     "default": []

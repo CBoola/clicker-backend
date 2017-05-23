@@ -21,7 +21,6 @@ class Achievement(models.Model):
     type = models.CharField(
         max_length=100,
         choices=ACHIEVEMENT_TYPE,
-        unique=True,
         verbose_name="Typ")
 
     related_system_id = models.CharField(
@@ -30,7 +29,7 @@ class Achievement(models.Model):
         null=True,
         blank=True,
         verbose_name="Identyfikator modelu relacji",
-        help_text="""Identyfikator do jakiegokolwiek modelu zadeklarowanego w systemie 
+        help_text="""Identyfikator do jakiegokolwiek modelu zadeklarowanego w systemie
             (jego poprawność nie jest sprawdzana).""")
 
     name = models.CharField(
